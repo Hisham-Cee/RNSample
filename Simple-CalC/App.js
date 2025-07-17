@@ -20,54 +20,38 @@ export default function Calculator(){
     if(op === '+') res = n1+n2;
     else if(op === '-') res = n1-n2;
     else if(op === 'x') res = n1*n2;
-    else if(op === '/') res = n2 !=0 ? n1/n2 : 'cannot divide by 0';
+    else if(op === '÷') res = n2 !=0 ? n1/n2 : 'cannot divide by 0';
     setResult(res.toString());
  }
 
   return(
     <View style={styles.rootContainer}>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>Simple Calculator</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <View style={styles.inputText}>
-          <TextInput 
-            value={num1}
-            keyboardType="number-pad"
-            onChangeText={setNum1}/>
-        </View>
-        <View style={styles.inputText}>
-          <TextInput
-            value={num2}
-            keyboardType="number-pad"
-            onChangeText={setNum2} />
-        </View>
-      </View>
+      <Text style={styles.text}>Simple Calculator</Text>    
+      <TextInput 
+        style={styles.inputText}
+        value={num1}
+        keyboardType="number-pad"
+        onChangeText={setNum1}/>
+      <TextInput
+        style={styles.inputText}
+        value={num2}
+        keyboardType="number-pad"
+        onChangeText={setNum2} />
       <View style={styles.buttonContainer}>
-        <View style={styles.buttons}>
-          <Pressable style={styles.button} onPress={() => onPressHandler('+')}>
-            <Text style={styles.buttonText}>+</Text>
-          </Pressable>
-        </View>
-        <View style={styles.buttons}>
-          <Pressable style={styles.button} onPress={() => onPressHandler('-')}>
-            <Text style={styles.buttonText}>-</Text>
-          </Pressable>
-        </View>
-        <View style={styles.buttons}>
-          <Pressable style={styles.button} onPress={() => onPressHandler('x')}>
-            <Text style={styles.buttonText}>x</Text>
-          </Pressable>
-        </View>
-        <View style={styles.buttons}>
-          <Pressable style={styles.button} onPress={() => onPressHandler('/')}>
-            <Text style={styles.buttonText}>/</Text>
-          </Pressable>
-        </View>
+        <Pressable style={styles.button} onPress={() => onPressHandler('+')}>
+          <Text style={styles.buttonText}>+</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => onPressHandler('-')}>
+          <Text style={styles.buttonText}>-</Text>
+        </Pressable>    
+        <Pressable style={styles.button} onPress={() => onPressHandler('x')}>
+          <Text style={styles.buttonText}>x</Text>
+        </Pressable>       
+        <Pressable style={styles.button} onPress={() => onPressHandler('÷')}>
+          <Text style={styles.buttonText}>÷</Text>
+        </Pressable> 
       </View>
-      <View style={styles.resultContainer}>
-        <Text style={styles.resultText}>Result: {result}</Text>
-      </View>
+      <Text style={styles.resultText}>Result: {result}</Text>   
     </View>
   );
 };
@@ -77,47 +61,47 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 40
+    backgroundColor: '#000'
   },
-  textContainer:{},
   text:{
-    fontSize: 24,
+    color: '#f8f6f6ff',
+    fontSize: 30,
+    marginBottom: 20,
+    fontWeight:'bold',
+    justifyContent:'center',
+    alignItems: 'center'
   },
-  inputContainer:{},
   inputText:{
     width: '80%',
-    borderColor: '#000',
+    borderColor: '#fff',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 7,
     padding: 10,
     marginVertical: 10,
-    color: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#fff'
   },
   buttonContainer:{
     flexDirection: 'row',
-    gap:20
-  },
-  buttons:{
-   
+    gap:20,
   },
   button:{
-    width: 50,
+    width: 60,
     height: 70,
-    borderRadius: 3,
-    padding: 4,
+    borderRadius: 5,
+    marginTop: 30,
     justifyContent: 'center',
     alignItems:'center',
-    
+    backgroundColor:'#333',
   },
   buttonText:{
     fontSize: 30,
-  },
-  resultContainer:{
-    padding: 10,
-    marginTop: 20,
-    
+    color: '#fff'
   },
   resultText:{
-    fontSize: 28,
+    marginTop: 30,
+    fontSize: 27,
+    color: '#0f0'
   },
 });
