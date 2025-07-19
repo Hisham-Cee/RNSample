@@ -1,8 +1,21 @@
-import { View, Text, Pressable, StyleSheet, TextInput } from "react-native";
+import { useState } from "react";
+import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from "react-native";
 
 
 export default function App(){
-  function buttonHandler(){};
+
+  const [task, setTask] = useState('');
+  const [taskView, setTaskView] = useState([]);
+
+  function buttonHandler(){
+
+    const toDo = {
+      id: Date.now().toString(), 
+      text: task
+    }
+    setTask('');
+    setTaskView((prevTasks) => [...prevTasks, toDo])
+  };
 
   return(
     <View style={styles.rootContainer}>
@@ -10,16 +23,19 @@ export default function App(){
       <View style={styles.subContainer}>
         <TextInput 
           style={styles.inputText}
-          placeholder="Enter new task ....."/>
+          placeholder="Enter new task ....."
+          value={task}
+          onChangeText={setTask}/>
         <Pressable style={styles.button} onPress={buttonHandler}>
           <Text style={styles.buttonText}>Add</Text>
         </Pressable>
       </View>
         <Text style={styles.listHeading}>Pending Tasks:</Text>
-        <View style={styles.taskContainer}>
-          <Text style={styles.taskItem}>do something</Text>
-          <Text style={styles.taskItem}>do something</Text>
-        </View>
+        <ScrollView style={styles.taskContainer}>
+          {taskView.map((toDos) => (
+          <Text key={toDos.id} style={styles.taskItem}>{toDos.text}</Text>
+          ))}
+        </ScrollView>
     </View>
 
   );
